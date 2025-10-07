@@ -21,11 +21,11 @@ class ApiCallHelper {
       await http.get(Uri.parse(url));
     } catch (e) {
       if (e.toString().contains('400')) {
-        errorType = 'Bad Request (400)';
+        errorType = 'Pogresan upit - (400)';
       } else if (e.toString().contains('401')) {
-        errorType = 'Unauthorized (401)';
+        errorType = 'Niste ulogovani - (401)';
       } else if (e.toString().contains('500')) {
-        errorType = 'Internal Server Error (500)';
+        errorType = 'Server Greska - (500)';
       } else if (e.toString().contains('200')) {
         errorType = 'Uspesno!';
       } else {
@@ -33,9 +33,9 @@ class ApiCallHelper {
       }
       setLoading(false);
       incrementStep();
-      if (errorType == 'Success!') {
+      if (errorType == 'Uspesno!') {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Success!')),
+          const SnackBar(content: Text('Uspesno!')),
         );
         
       } else if (errorType != null) {
